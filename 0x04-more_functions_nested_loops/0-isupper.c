@@ -1,16 +1,18 @@
-#include <stdio.h>
 #include "main.h"
-int main () {
 
-   /* local variable definition */
-   int i, j;
-   
-   for(i = 2; i<100; i++) {
+/**
+ * _isupper - uppercase letters
+ *
+ * @c: char to check
+ *
+ * Return: 0 or 1
+ */
 
-      for(j = 2; j <= (i/j); j++) 
-      if(!(i%j)) break; // if factor found, not prime
-      if(j > (i/j)) printf("%d is prime\n", i);
-   }
- 
-   return 0;
+
+int _isupper(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	else
+		return (0);
 }

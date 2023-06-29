@@ -44,7 +44,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		v--, j--, k++)
 	{
 		sum = carry;
-		sum += (i >= 0) ? n1[v] - '0' : 0;
+		sum += (v >= 0) ? n1[v] - '0' : 0;
 		sum += (j >= 0) ? n2[j] - '0' : 0;
 		temp[k] = sum % 10 + '0';
 		carry = sum / 10;

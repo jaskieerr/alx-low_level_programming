@@ -4,10 +4,10 @@
  * print_chessboard - A function that prints a chessboard
  * @a: a pointer to the chessboard
  */
+
 void print_chessboard(char (*a)[8])
 {
-	int i = 8;
-	int j = 8
+	int i, j;
 
 	for (i = 0; i < 8; i++)
 	{

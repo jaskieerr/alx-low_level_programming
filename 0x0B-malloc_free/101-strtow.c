@@ -82,7 +82,7 @@ void olsun(char **words, char *str)
  * @words: ptr to the array of strings
  * @str: ptr to the string
  * @start: starting index
- * @finish: finish index 
+ * @finish: finish index
  * @index: the index where to insert word
  */
 

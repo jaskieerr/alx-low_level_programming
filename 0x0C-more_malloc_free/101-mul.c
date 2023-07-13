@@ -1,121 +1,86 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include "main.h"
 #include <string.h>
+#include <stdlib.h>
 
 /**
- * isNumber - checks if a string represents a valid positive number
- * @str: input string
- * Return: 1 if valid number, 0 otherwise
+ * check - checks if chars r numbea
+ * @s: string to be checked
+ * Return: kinda depends
  */
-int isNumber(const char *str)
+int check(char *s)
 {
-	int i = 0;
+	int i;
 
-	if (str == NULL || str[0] == '\0')
-		return (0);
-
-	while (str[i] != '\0')
-	{
-		if (str[i] < '0' || str[i] > '9')
+	for (i = 0; s[i]; i++)
+		if (s[i] < '0' || s[i] > '9')
 			return (0);
-		i++;
-	}
-
 	return (1);
 }
 
 /**
- * print_result - prints the result of the multiplication
- * @result: array representing the result
- * @length: length of the result array
+ * result - print result multiplication
+ * @result: array of ints
+ * @len: len of result
+ * Return: jackshit
  */
-void print_result(const int *result, int length)
+void result(int *res, int len)
 {
-	int i = 0;
+	int i;
 
-	while (i < length && result[i] == 0)
-		i++;
+	for (i = 0; i < len && res[i] == 0; i++)
+		;
 
-	if (i == length)
-	{
-		putchar('0');
-		putchar('\n');
-		return;
-	}
+	if (i == len)
+		printf("0");
 
-	while (i < length)
-	{
-		putchar(result[i] + '0');
-		i++;
-	}
+	for (; i < len; i++)
+		printf("%d", res[i]);
 
-	putchar('\n');
+	printf("\n");
 }
 
 /**
- * multiply - multiplies two positive numbers
- * @num1: first number as string
- * @num2: second number as string
+ * main - multiplies nums
+ * @ac: numbea args
+ * @av: array of args
+ * Return: 0
  */
-void multiply(const char *num1, const char *num2)
+int main(int ac, char **av)
 {
 	int i, j, num1_len, num2_len;
-	int *result;
+	int *res;
 
-	num1_len = strlen(num1);
-	num2_len = strlen(num2);
-
-	result = calloc(num1_len + num2_len, sizeof(int));
-	if (result == NULL)
+	if (ac != 3 || !check(av[1]) || !check(av[2]))
 	{
 		printf("Error\n");
 		exit(98);
 	}
 
-	/* multiply each digit of num1 with num2 */
+	num1_len = strlen(av[1]);
+	num2_len = strlen(av[2]);
+
+	res = calloc(num1_len + num2_len, sizeof(int));
+	if (res == NULL)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+
 	for (i = num1_len - 1; i >= 0; i--)
 	{
 		for (j = num2_len - 1; j >= 0; j--)
 		{
-			/* multiply each digit and add to result */
-			int mul = (num1[i] - '0') * (num2[j] - '0');
+			int mul = (av[1][i] - '0') * (av[2][j] - '0');
 
-			/* add to previous result */
-			int sum = result[i + j + 1] + mul;
+			int sum = res[i + j + 1] + mul;
 
-			/* update result */
-			result[i + j] += sum / 10;
-			result[i + j + 1] = sum % 10;
+			res[i + j] += sum / 10;
+			res[i + j + 1] = sum % 10;
 		}
 	}
 
-	/* print result and free the allocated memory */
-	print_result(result, num1_len + num2_len);
-	free(result);
-}
-
-/**
- * main - entry point
- * Return: 0 on success, 1 on error
- */
-int main(void)
-{
-	char num1[100];
-	char num2[100];
-
-	printf("Enter the first number: ");
-	scanf("%s", num1);
-
-	printf("Enter the second number: ");
-	scanf("%s", num2);
-
-	if (!isNumber(num1) || !isNumber(num2))
-	{
-		printf("Error: Invalid input\n");
-		return (1);
-	}
-
-	multiply(num1, num2);
-
+	result(res, num1_len + num2_len);
+	free(res);
 	return (0);
 }

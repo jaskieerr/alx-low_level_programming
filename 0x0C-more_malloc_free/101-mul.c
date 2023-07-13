@@ -20,7 +20,7 @@ int check(char *s)
 
 /**
  * result - print result multiplication
- * @result: array of ints
+ * @res: array of ints
  * @len: len of result
  * Return: jackshit
  */

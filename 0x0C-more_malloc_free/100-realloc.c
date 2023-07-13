@@ -5,36 +5,41 @@
  * _realloc - a function that reallocates a memory block
  * using malloc and free
  * @ptr: pointer to the memory previously allocated
- * @old_size: the  size in bytes of the allocated
+ * @old_size: the  size in bytes of the allocated 
  * space for pointer
  * @new_size: the new size for mem block
  * Return: kinda depends
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *Charr;
-	unsigned int i, y = new_size;
-	char *oldp = ptr;
+	char *rlt;
+	unsigned int i;
 
-	if (ptr == NULL)
-	{
-		Charr = malloc(new_size);
-		return (Charr);
-	}
-	else if (new_size == 0)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	else if (new_size == old_size)
-		return (ptr);
-	Charr = malloc(new_size);
-	if (Charr == NULL)
+
+	if (ptr == NULL)
+	{
+		rlt = malloc(new_size);
+		if (rlt == NULL)
+			return (NULL);
+		return (rlt);
+	}
+
+	rlt = malloc(new_size);
+	if (rlt == NULL)
 		return (NULL);
-	if (new_size > old_size)
-		y = old_size;
-	for (i = 0; i < y; i++)
-		Charr[i] = oldp[i];
+
+	for (i = 0; i < old_size && i < new_size; i++)
+		rlt[i] = ((char *)ptr)[i];
+
 	free(ptr);
-	return (Charr);
+
+	return (rlt);
 }

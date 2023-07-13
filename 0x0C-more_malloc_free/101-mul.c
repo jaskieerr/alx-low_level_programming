@@ -25,48 +25,11 @@ int isNumber(const char *str)
 }
 
 /**
- * multiply - multiplies two positive numbers
- * @num1: first number as string
- * @num2: second number as string
- */
-void multiply(const char *num1, const char *num2)
-{
-	int i, j, num1_len, num2_len;
-	int *result;
-
-	num1_len = strlen(num1);
-	num2_len = strlen(num2);
-
-	result = calloc(num1_len + num2_len, sizeof(int));
-	if (result == NULL)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-
-	for (i = num1_len - 1; i >= 0; i--)
-	{
-		for (j = num2_len - 1; j >= 0; j--)
-		{
-			int mul = (num1[i] - '0') * (num2[j] - '0');
-
-			int sum = result[i + j + 1] + mul;
-
-			result[i + j] += sum / 10;
-			result[i + j + 1] = sum % 10;
-		}
-	}
-
-	printResult(result, num1_len + num2_len);
-	free(result);
-}
-
-/**
- * printResult - prints the result of the multiplication
+ * print_result - prints the result of the multiplication
  * @result: array representing the result
  * @length: length of the result array
  */
-void printResult(const int *result, int length)
+void print_result(const int *result, int length)
 {
 	int i = 0;
 
@@ -90,20 +53,69 @@ void printResult(const int *result, int length)
 }
 
 /**
- * main - entry point
- * @argc: number of command-line arguments
- * @argv: array of command-line arguments
- * Return: 0 on success, 1 on error
+ * multiply - multiplies two positive numbers
+ * @num1: first number as string
+ * @num2: second number as string
  */
-int main(int argc, char **argv)
+void multiply(const char *num1, const char *num2)
 {
-	if (argc != 3 || !isNumber(argv[1]) || !isNumber(argv[2]))
+	int i, j, num1_len, num2_len;
+	int *result;
+
+	num1_len = strlen(num1);
+	num2_len = strlen(num2);
+
+	result = calloc(num1_len + num2_len, sizeof(int));
+	if (result == NULL)
 	{
 		printf("Error\n");
+		exit(98);
+	}
+
+	/* multiply each digit of num1 with num2 */
+	for (i = num1_len - 1; i >= 0; i--)
+	{
+		for (j = num2_len - 1; j >= 0; j--)
+		{
+			/* multiply each digit and add to result */
+			int mul = (num1[i] - '0') * (num2[j] - '0');
+
+			/* add to previous result */
+			int sum = result[i + j + 1] + mul;
+
+			/* update result */
+			result[i + j] += sum / 10;
+			result[i + j + 1] = sum % 10;
+		}
+	}
+
+	/* print result and free the allocated memory */
+	print_result(result, num1_len + num2_len);
+	free(result);
+}
+
+/**
+ * main - entry point
+ * Return: 0 on success, 1 on error
+ */
+int main(void)
+{
+	char num1[100];
+	char num2[100];
+
+	printf("Enter the first number: ");
+	scanf("%s", num1);
+
+	printf("Enter the second number: ");
+	scanf("%s", num2);
+
+	if (!isNumber(num1) || !isNumber(num2))
+	{
+		printf("Error: Invalid input\n");
 		return (1);
 	}
 
-	multiply(argv[1], argv[2]);
+	multiply(num1, num2);
 
 	return (0);
 }

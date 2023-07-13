@@ -6,7 +6,7 @@
  * _realloc - a function that reallocates a memory block
  * using malloc and free
  * @ptr: pointer to the memory previously allocated
- * @old_size: the  size in bytes of the allocated 
+ * @old_size: the  size in bytes of the allocated
  * space for pointer
  * @new_size: the new size for mem block
  * Return: kinda depends

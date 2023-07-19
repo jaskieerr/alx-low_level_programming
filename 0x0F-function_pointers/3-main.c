@@ -1,6 +1,5 @@
 #include "3-calc.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
   * main - u know the drill at this point

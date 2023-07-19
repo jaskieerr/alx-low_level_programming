@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include "3-calc.h"
 
 /**
@@ -42,7 +42,6 @@ int op_mul(int a, int b)
  */
 int op_div(int a, int b)
 {
-	/* todo: handle division by 0 */
 	return (a / b);
 }
 
@@ -50,7 +49,7 @@ int op_div(int a, int b)
  * op_mod - calculates modules
  * @a: first int
  * @b: second int
- * Return: 
+ * Return:
  */
 int op_mod(int a, int b)
 {

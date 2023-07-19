@@ -4,6 +4,7 @@
 
 /**
  * get_op_func - ssadi2ni  ana law ba3raf a2olak
+ *  @s: opp arg
  * Return: kinda depends
  */
 int (*get_op_func(char *s))(int, int)

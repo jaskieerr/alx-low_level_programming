@@ -4,7 +4,7 @@
 /**
  * print_strings - a function that prints strings
  * followed by a new line
- * @separator: string to be printed 
+ * @separator: string to be printed
  * @n: string count
  */
 void print_strings(const char *separator, const unsigned int n, ...)

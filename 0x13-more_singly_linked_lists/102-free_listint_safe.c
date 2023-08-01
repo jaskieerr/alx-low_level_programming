@@ -57,7 +57,7 @@ size_t free_listint_safe(listint_t **h)
 	listint_t *temp;
 	size_t length, i;
 
-	length = looping_fun(*h);
+	length = loopin_fun(*h);
 
 	if (length == 0)
 	{
